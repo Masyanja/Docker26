@@ -1,0 +1,12 @@
+[Unit]
+Description=Flask app service
+After=network.target
+
+[Service]
+WorkingDirectory=/home/mkoliada/app
+ExecStart=/home/mkoliada/app/venv/bin/python -m gunicorn run:app -b 0.0.0.0:80 -w 4
+Environment="APP SETTINGS=/etc/flask-app/config.py"
+Restart=always
+
+[INSTALL]
+WantedBy=multi-user.target
